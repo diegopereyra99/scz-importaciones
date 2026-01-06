@@ -1,0 +1,62 @@
+tree -L 2
+.
+├── classify_documents.py
+├── convert_clasificacion_importaciones.py
+├── convert_dua_items.py
+├── convert_eml.py
+├── convert_factura_packing_items.py
+├── data
+│   ├── carpetas
+│   ├── classified
+│   └── emails
+├── db
+│   ├── assignments.jsonl
+│   ├── attachments.jsonl
+│   ├── emails.jsonl
+│   ├── events.jsonl
+│   ├── folder_files
+│   ├── folders.jsonl
+│   └── folders_snapshot.json
+├── embed_and_cluster_vertex.py
+├── matching.py
+├── merge_dua_factura_items.py
+├── output
+│   ├── bl
+│   ├── certificado_seguro
+│   ├── clasificacion_importaciones
+│   ├── clasificacion_importaciones.csv
+│   ├── classify
+│   ├── dua
+│   ├── dua_factura_merge.csv
+│   ├── dua_global
+│   ├── dua_items
+│   ├── dua_items.csv
+│   ├── factura_despachante
+│   ├── factura_gastos_terminales
+│   ├── factura_packing
+│   ├── factura_packing_items.csv
+│   ├── guia
+│   ├── packing_list
+│   └── talon
+├── process_mails.py
+├── profiles
+│   ├── bl
+│   ├── certificado_seguro
+│   ├── classify
+│   ├── dua
+│   ├── dua_global
+│   ├── dua_items
+│   ├── factura_despachante
+│   ├── factura_gastos_terminales
+│   ├── factura_packing
+│   ├── guia
+│   ├── packing_list
+│   ├── summarize_email
+│   └── talon
+├── proveedores.csv
+├── __pycache__
+│   ├── convert_dua_items.cpython-310.pyc
+│   ├── convert_factura_packing_items.cpython-310.pyc
+│   ├── merge_dua_factura_items.cpython-310.pyc
+│   └── process_mails.cpython-310.pyc
+└── run_classification.sh
