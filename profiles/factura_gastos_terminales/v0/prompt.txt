@@ -1,0 +1,9 @@
+Lee la factura de gastos terminales/flete y completa el esquema:
+
+- numero_factura, fecha_factura, proveedor, moneda.
+- referencias logísticas (BL, booking, contenedor, DUA, guía) como {nombre, valor}.
+- conceptos: descripcion y monto.
+- subtotal, impuestos (nombre, monto) y total si figuran.
+- observaciones relevantes si aparecen.
+
+Reglas: números con punto decimal; fechas según el esquema. Si falta un dato, dejalo vacío u omite el campo opcional. Devuelve solo el JSON válido.

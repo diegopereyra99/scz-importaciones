@@ -1,0 +1,17 @@
+db/
+data/
+output/
+logs/
+.venv/
+.vscode/
+.docflow/
+
+*.pyc
+__pycache__/
+
+*.json
+*.jsonl
+*.jpg
+*.png
+*.eml
+*.pdf

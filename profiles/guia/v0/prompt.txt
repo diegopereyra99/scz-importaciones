@@ -1,0 +1,9 @@
+Lee la guía y completa el esquema:
+
+- numero de guía (MAWB y HAWB) aerolinea y vuelo si están; shipper_nombre, consignee_nombre, notify_nombre.
+- aeropuerto_origen y aeropuerto_destino; fecha_emision si figura.
+- numero_piezas (entero), peso_bruto_kg, volumen_m3, descripcion_carga.
+- modo_pago_flete (Freight Prepaid/Collect) y monto_flete + moneda_flete (ISO) si están.
+- temperatura_condiciones e instrucciones de manejo especial; observaciones relevantes.
+
+Reglas: números sin separadores y con punto decimal; monedas en ISO 3 letras; si falta un dato dejalo vacío u omite el campo opcional. Devuelve solo el JSON válido.

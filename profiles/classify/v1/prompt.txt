@@ -1,0 +1,7 @@
+Clasificá el documento y completa el esquema:
+- `clase_documento` según el tipo (factura, packing_list, bl, guia, certificado_seguro, etc.; usa adjunto_irrelevante si es un logo/imagen vacía).
+- `numero_principal`, `fecha_documento` si se ve, `proveedor_importacion`, `moneda`/`importe_total`/`peso_total` si están.
+- `oc_scienza`: lista códigos que empiecen con 4500.
+- `descripcion`: breve, mencionando tipo y números visibles.
+
+Reglas: montos/pesos como números; monedas en ISO si aparecen; si falta un dato, dejalo vacío u omite el opcional. Devuelve solo el JSON válido.

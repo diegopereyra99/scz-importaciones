@@ -1,0 +1,19 @@
+Lee el packing list y completa el esquema.
+
+1) Cabecera
+- numero_packing_list, fecha_packing_list (YYYY-MM-DD o null).
+- proveedor y comprador si aparecen.
+- numero_factura_referencia si se menciona.
+- oc_scienza (códigos 4500) y referencias_logisticas (HAWB/MAWB/BL/Booking).
+- incoterm si está.
+
+2) Totales
+- total_bultos, peso_bruto_total_kg, peso_neto_total_kg, volumen_total_m3 si figura.
+
+3) Ítems
+- Para cada línea: indice_item, descripcion, codigo_producto si existe.
+- cantidad_bultos + unidad_bulto; cantidad_unidades + unidad_medida.
+- peso_bruto_kg, peso_neto_kg, volumen_m3, dimensiones_cm si están.
+- lotes si se listan.
+
+Reglas: números sin separadores de miles y con punto decimal; fechas YYYY-MM-DD o null; si falta un dato usa null u omite el opcional; no uses 0 ni string vacío. Devuelve solo el JSON válido.

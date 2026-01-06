@@ -1,0 +1,31 @@
+
+Lee el BL/Sea Waybill y completa el esquema.
+
+1) Identificación y partes
+- numero_bl, shipper_ref y booking.
+- shipper_nombre, consignee_nombre, notify_nombre.
+
+2) Transporte y rutas
+- vessel, viaje.
+- puerto_carga (Port of Loading) y puerto_descarga (Port of Discharge).
+- lugar_recibo y lugar_entrega si aparecen.
+
+3) Carga y cantidades
+- numero_paquetes (entero) y tipo_paquetes.
+- descripcion_carga.
+- modo_pago_flete (FREIGHT PREPAID/COLLECT).
+- peso_bruto_kg y volumen_m3 totales.
+- monto_flete y moneda_flete si aparecen.
+
+4) Contenedores (si aplica)
+- Para cada contenedor: numero_contenedor, tipo_contenedor y sello si está.
+
+5) Emisión
+- fecha_emision y lugar_emision.
+- transportista y agente que firma si se leen.
+
+Reglas
+- Convierte números: sin separadores de miles, punto decimal.
+- Si falta un dato, déjalo vacío u omite el campo opcional.
+- Usa monedas en ISO 3 letras cuando aparezcan.
+- Devuelve solo el JSON válido según el esquema.

@@ -1,0 +1,29 @@
+Lee todos los bloques “DATOS DEL ITEM 000X” del DUA y arma la lista de ítems según el esquema.
+
+1) Identificación del ítem
+- numero: usa el índice del bloque (0001 → 1, etc.).
+- descripcion_mercaderia: copia todo el texto de la sección [92].
+- nombre_producto: usa el nombre comercial si está claro.
+- factura_asociada y linea_factura_asociada: toma el número de factura y la o las líneas mencionadas en la descripción, si existe.
+- pais_origen ([72]) y pais_procedencia ([73]).
+
+2) Cantidades y pesos
+- cantidad_bultos ([57]), peso_neto_kg ([58]), peso_bruto_kg ([59]), cantidad_unidades ([78]).
+
+3) Valores aduaneros
+- 84_valor_cif_fob_usd, 85_valor_aduanas_pesos, 87_valor_aduanas_ajustado_pesos, 89_valor_aduanas_ajustado_tga según el bloque del ítem.
+
+4) Tributos del ítem
+- Usa la tabla “Tributos” dentro del bloque.
+- Para cada fila extrae: codigo numérico, nombre sin código, codigo_b_imp, alicuota (porcentaje → número).
+- base_imponible: si el codigo_b_imp remite a 84/85/87/89, toma el valor correspondiente del ítem; si no, usa null/None.
+
+5) Reglas
+- No traigas tributos ni totales de la carátula general.
+- Respeta los tipos del esquema:
+  - numero, codigo, codigo_b_imp y linea_factura_asociada deben ser enteros (sin ceros a la izquierda).
+  - Valores monetarios o de cantidad deben ser números JSON (sin texto ni unidades).
+  - linea_factura_asociada es siempre una lista de enteros; si no aparece, déjala vacía o null.
+- Convierte los valores numéricos: “1.162.407,83” → 1162407.83, “0,610” → 0.61, porcentajes “3,00” → 0.03.
+- Si falta un dato, deja null o el campo opcional vacío.
+- Devuelve solo el JSON válido según el esquema.

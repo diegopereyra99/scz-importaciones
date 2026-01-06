@@ -1,0 +1,25 @@
+Estás extrayendo únicamente el detalle de ítems de un Documento Único Aduanero (DUA) uruguayo.
+
+Alcance:
+- Trabaja solo con los bloques “DATOS DEL ITEM 0001 / 0002 / …”.
+- No tomes valores de la carátula ni de los tributos globales.
+- Si el número del DUA aparece en las páginas de ítems, consérvalo en numero_dua.
+
+Qué extraer por ítem:
+- Número de ítem, descripción de la mercadería ([92]) y nombre comercial si se distingue.
+- Factura asociada y línea dentro de la factura cuando esté indicada.
+- País de origen/procedencia, cantidades de bultos y unidades, peso neto/bruto.
+- Valores aduaneros [84], [85], [87], [89] del ítem.
+- Tabla “Tributos” del ítem: código numérico, nombre sin código, código de base imponible (B Imp), base_imponible vinculada a 84/85/87/89 si puede deducirse y alicuota como número puro.
+
+Formato y numéricos:
+- Remueve puntos de miles y usa punto como separador decimal (1.234,56 → 1234.56) y devuelve como float en el json, NO string.
+- Convierte los números de ítem y códigos en enteros (0001 → 1).
+- Campos numéricos o enteros van siempre como número JSON, nunca como string ni con unidades (ej: sin “kg”, “USD”).
+- linea_factura_asociada debe ser una lista de enteros (no strings).
+- Si un valor debería ser numérico y no está visible, usa null/None.
+
+Reglas:
+- No inventes datos ni uses totales generales para completar campos de ítems.
+- Ignora textos normativos o explicativos que no pertenecen al bloque del ítem.
+- La salida debe ser solo el JSON válido según el esquema provisto.

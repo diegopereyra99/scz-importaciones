@@ -1,0 +1,75 @@
+Lee el DUA completo y completa el esquema JSON proporcionado.
+
+1) CARÁTULA INICIAL (DATOS GENERALES)
+- Usa la primera carilla para llenar los campos generales:
+  - fecha_emision, numero_dua.
+  - Datos del importador, declarante y proveedor (códigos, nombres, domicilios).
+  - importe_total_facturas, divisa, tipo_cambio, arbitraje.
+  - total_bultos, peso_bruto_total, total_valor_cif.
+  - total_a_pagar.
+- En la tabla de “Tributos” de la carátula inicial:
+  - Construye el array "tributos" a nivel DUA.
+  - Para cada fila, extrae:
+    - codigo numerico del tributo
+    - nombre del tributo (sin el código numérico).
+    - monto total a pagar o garantizar.
+
+2) ÍTEMS (BLOQUES "DATOS DEL ITEM 000X")
+Para cada bloque "DATOS DEL ITEM 0001", "DATOS DEL ITEM 0002", etc.:
+
+- Crea un objeto dentro de "lista_items".
+- Completa:
+  - numero: el número de ítem (1, 2, 3, etc.), a partir de 0001, 0002...
+  - descripcion_mercaderia: todo el texto de [92] Descripción de la mercadería (a, b, c, d, e).
+  - nombre_producto: el nombre comercial, si se distingue claramente.
+  - factura_asociada: número de factura asociada al ítem, según la descripción de la mercadería.
+  - linea_factura_asociada: el número de línea (índice) del ítem en la factura asociada (campo anterior)
+  - pais_origen: valor de [72] País Origen.
+  - pais_procedencia: valor de [73] País Procedencia/Destino.
+  - cantidad_bultos: cantidad a partir de [57] Tipo y Cantidad de Bultos.
+  - peso_neto_kg: [58] Peso Neto Kilos.
+  - peso_bruto_kg: [59] Peso Bruto Kilos.
+  - cantidad_unidades: cantidad de [78] Tipo y Cantidad de U Comercial.
+
+- Para los valores aduaneros del ítem, completa:
+  - 84_valor_cif_fob_usd: si aparece explícito, o null si no está visible.
+  - 85_valor_aduanas_pesos: valor de [85] Valor Aduanas Pesos.
+  - 87_valor_aduanas_ajustado_pesos: valor de [87] Valor Aduanas Ajustado Pesos.
+  - 89_valor_aduanas_ajustado_tga: valor de [89] V Aduanas Ajustado+TGA.
+
+3) TRIBUTOS POR ÍTEM
+En cada bloque de ítem (DATOS ITEM 000X), usa la tabla “Tributos”:
+
+- Cada fila de la tabla “Tributos” se convierte en un elemento de "tributos_item".
+- NO CONFUNDIR con los tributos totales de la carilla incial. Estos NO indican monto a pagar, sino que son la descomposicion de los totales por item.
+- Para cada tributo del ítem extraer estos campos:
+  - codigo:
+    - Extrae solo el código numérico inicial del tributo (ej: “04” de “04 IMADUNI”, “15” de “15 I.V.A. (IMPUESTO AL VALOR AGREGADO)”).
+  - nombre:
+    - Extrae el nombre del tributo sin el código numérico (ej: “IMADUNI”, “ADELANTO SOBRE I.V.A.”, “I.V.A. (IMPUESTO AL VALOR AGREGADO)”).
+  - codigo_b_imp:
+    - Toma el valor numérico de la columna “B Imp” (por ejemplo: 84, 87, 89).
+  - base_imponible:
+    - Si el código de base imponible remite a uno de los campos [84], [85], [87] o [89] del mismo ítem:
+      - Usa el valor numérico correspondiente a esa casilla.
+    - Si no se puede determinar, pon null.
+  - alicuota:
+    - Convierte el porcentaje mostrado en la columna “Alicuota” en un número puro:
+      - Ej: “3,00” → 0.03
+      - Ej: “10,00” → 0.10
+
+4) REGLAS IMPORTANTES
+- No inventes valores. Si un campo no se ve en el DUA, pon null.
+- Ignora todo el texto que sean explicaciones genéricas o normativas:
+  - Secciones de “Declaración de Valor” que solo detallan cómo se calcula la base de valor.
+  - Secciones de “REFERENCIAS PARA COMPLETAR LOS DOCUMENTOS COMPLEMENTARIOS”.
+  - Explicaciones largas de qué significa cada casilla (listados de [13](a), [15](b), etc.).
+- Concéntrate en:
+  - La carátula con “DATOS GENERALES / HOJA DE TRABAJO”.
+  - Los bloques “DATOS DEL ITEM 000X”.
+  - Las tablas de “Tributos” (global y por ítem).
+- Convierte todos los importes al formato numérico estándar:
+  - Quita puntos de miles.
+  - Usa punto como separador decimal (ej: “1.162.407,83” → 1162407.83).
+
+La salida debe ser exclusivamente el JSON que cumple con el esquema proporcionado, sin texto adicional.

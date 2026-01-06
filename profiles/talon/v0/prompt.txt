@@ -1,0 +1,15 @@
+Lee el talón de pago y completa el esquema conciso.
+
+1) Identificación
+- numero_dua completo.
+- importador y despachante si figuran.
+- moneda declarada.
+
+2) Tributos
+- Para cada tributo: tributo (nombre) y monto como número.
+- total_pagado si el documento lo muestra.
+
+3) Fecha
+- fecha del talón si está visible (YYYY-MM-DD o null).
+
+Reglas: montos con punto decimal; si falta un dato usa null u omite el opcional; no uses 0 ni string vacío. Devuelve solo el JSON válido.

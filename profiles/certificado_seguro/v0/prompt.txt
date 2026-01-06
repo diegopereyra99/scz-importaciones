@@ -1,0 +1,18 @@
+Lee el certificado de seguro y completa el esquema con datos esenciales.
+
+1) Identificación y partes
+- numero_certificado, aseguradora, asegurado.
+- fechas: fecha_emision, validez_desde, validez_hasta (YYYY-MM-DD o null).
+
+2) Cobertura y valores
+- valor_asegurado y moneda (ISO 3 letras).
+- costo_seguro (prima) y moneda si figura.
+- deducible si se menciona.
+- cobertura principal y mercaderia descrita.
+- transporte cubierto (aéreo, marítimo, terrestre) si lo indica.
+
+3) Referencia y observaciones
+- factura_referencia si se menciona.
+- observaciones breves sobre condiciones especiales relevantes.
+
+Reglas: números con punto decimal y sin separadores; si falta un dato usa null u omite el opcional; fechas en YYYY-MM-DD o null; monedas en ISO 3 letras. Devuelve solo el JSON válido.

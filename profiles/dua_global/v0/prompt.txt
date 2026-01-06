@@ -1,0 +1,18 @@
+Lee solo la carátula del DUA (DATOS GENERALES / HOJA DE TRABAJO) y completa el esquema JSON de datos globales.
+
+1) Identificación
+- fecha_emision y numero_dua.
+- Datos de importador, declarante y proveedor (códigos, nombres, domicilios).
+
+2) Totales del DUA
+- importe_total_facturas, divisa, arbitraje, tipo_cambio.
+- total_bultos, peso_bruto_total, total_valor_cif, total_a_pagar.
+
+3) Tributos globales
+- Usa la tabla de tributos de la carátula.
+- Para cada fila extrae: codigo numérico, nombre sin el código y monto_a_pagar.
+
+4) Reglas
+- Si no ves un dato, usa null o deja el campo opcional vacío.
+- No incluyas datos provenientes de los ítems.
+- La salida debe ser únicamente el JSON válido según el esquema.
